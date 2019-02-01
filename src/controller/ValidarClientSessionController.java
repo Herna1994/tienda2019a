@@ -37,6 +37,7 @@ public class ValidarClientSessionController extends HttpServlet {
     JSONObject oneJson = new JSONObject();
     JSONArray arrayJson = new JSONArray();
     ClienteDAO  clienteDAO;
+    DataLoginCliente  dataLoginCliente;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -63,7 +64,7 @@ public class ValidarClientSessionController extends HttpServlet {
         HashMap<String,Error> listaErrores = comandoValidarLoginCliente.getCommands();
 
         if (listaErrores.isEmpty()) {
-            // Buscamos al cliente en la bb dd
+
             try {
                   clienteDAO = new ClienteDAO();
             } catch (SQLException e) {
@@ -71,8 +72,41 @@ public class ValidarClientSessionController extends HttpServlet {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(String.valueOf(clienteDAO.getIdLogin(user,password)));
+            int id = clienteDAO.getIdLogin(user,password);
+
+
+            if (id > 0) {
+                session.setAttribute("paginaActiva", "client");
+                session.setAttribute("idCliente", id);
+
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(String.valueOf(id));
+            }
+            else
+            {
+                try {
+                    dataLoginCliente = new DataLoginCliente(request);
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+
+                dataLoginCliente.incrementarIntento();
+
+                if (!dataLoginCliente.disponibilidadIntento()) {
+                    // Hay que bloquearlo un tiempo
+                    session.setAttribute("horaBloqueo", new Date());
+                 //  oneJson.put("horaBloqueo",session.getAttribute("horaBloqueo"));
+                   oneJson.put("tiempoMaximoBloqueo",session.getAttribute("tiempoMaximoBloqueo"));
+                }
+
+                oneJson.put("maxIntento", session.getAttribute("maxIntento"));
+                oneJson.put("intento", dataLoginCliente.getIntento());
+
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write(oneJson.toJSONString());
+            }
         } else {
             for(Map.Entry<String, Error> entry : listaErrores.entrySet()) {
                 oneJson.put("control" ,entry.getKey());

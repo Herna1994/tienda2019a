@@ -18,6 +18,13 @@
     session.setAttribute("paginaActiva", "index");
 
     session.setAttribute("idSesion", session.getId());
+
+    session.setAttribute("intento",0);
+
+    session.setAttribute("maxIntento",3);
+
+    session.setAttribute("tiempoMaximoBloqueo",30);
+
   }
 
   if(session.getAttribute("idSesion") == session.getId())

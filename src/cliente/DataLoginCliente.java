@@ -14,13 +14,14 @@ public  class DataLoginCliente {
     HttpSession session;
 
 
+
     public DataLoginCliente(HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
 
         session = request.getSession();
 
-        new RequestTransferSession().guardarDatosSesion(request,session);
+       // new RequestTransferSession().guardarDatosSesion(request,session);
 
-        new SessionTransferObject(session,loginClienteEntity);
+       // new SessionTransferObject(session,loginClienteEntity);
     }
 
     public LoginClienteHarnina getLoginClienteEntity() {
@@ -65,7 +66,7 @@ public  class DataLoginCliente {
         this.setSessionAttribute("intento", intento);
     }
 
-    private int getIntento() {
+    public int getIntento() {
 
         return (Integer) session.getAttribute("intento");
     }

@@ -49,7 +49,7 @@ STORE.IndexTemplate = {
         "             </div>",
 
     formAddClient :
-    /*
+
         "            <div id='div_clientFirstName'>" +
         "                <label class='labelInput' for='clientFirstName'></label>" +
         "                <input class='etiqueta s8' id='clientFirstName' name ='nombreCliente' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarLetrasConEspacio' size='24' minlength='3' maxlength='80' required placeholder='input your FirstName' title='3 to 50 characters'>" +
@@ -69,7 +69,7 @@ STORE.IndexTemplate = {
         "                    <option value='m'>Hombre</option>" +
         "                    <option value='f'>Mujer</option>" +
         "                </select>" +
-        "            </div>" +*/
+        "            </div>" +
         "            <div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
         "            <button id='submit' type='submit'>Enviar</button>" +
         "        </div>" +
@@ -89,8 +89,14 @@ STORE.IndexTemplate = {
           "</div>" +
           "<div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
           "<button id='submit'>Enviar</button>" +
-        "</div>  </form> </div>"
+        "</div>  </div> </div>",
 
+    formSessionLocked : "<div class='contenido01'>" +
+        "<div class='menu s3 caja03'>" +
+                "<div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
+                "<button id='locked'>Locked</button>" +
 
+        "</div>" +
+    "</div>"
 
 };

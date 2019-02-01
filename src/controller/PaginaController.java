@@ -30,6 +30,9 @@ public class PaginaController {
         if (this.pagina.equals("index")) {
             paginaDao = new PaginaDao("index", this.driver, this.dbName, this.user, this.password);
         }
+        if (this.pagina.equals("client")) {
+            paginaDao = new PaginaDao("client", this.driver, this.dbName, this.user, this.password);
+        }
         return (new BuilderPage(paginaDao).getPage());
     }
 }
