@@ -39,8 +39,7 @@ public class ValidarClientSessionController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         session = request.getSession();
-        System.out.println("Hola Servidor");
-        // leer el envio
+
         miUsuario = request.getParameter("json");
 
         JSONParser parser = new JSONParser();
@@ -92,7 +91,7 @@ public class ValidarClientSessionController extends HttpServlet {
                 dataLoginCliente.incrementarIntento();
 
                 if (!dataLoginCliente.disponibilidadIntento()) {
-                    // Hay que bloquearlo un tiempo
+
                     session.setAttribute("horaBloqueo", new Date());
                  //  oneJson.put("horaBloqueo",session.getAttribute("horaBloqueo"));
                    oneJson.put("tiempoMaximoBloqueo",session.getAttribute("tiempoMaximoBloqueo"));

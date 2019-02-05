@@ -44,7 +44,7 @@
             };
             var json = JSON.stringify(envio);
             llamada = new ajax.CargadorContenidos("/valiCliAdd", function(){
-                
+
                 var estado = JSON.parse(llamada.req.responseText);
                 $("alertaError").innerText ="";
                 if ((typeof estado === "number") && (estado > 0) ){

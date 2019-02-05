@@ -93,6 +93,7 @@ if (listaErrores.isEmpty()) {
 
             if (idInsert > 0){
                 session.setAttribute("paginaActiva", "client");
+                session.setAttribute("idCliente", idInsert);
             }
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(String.valueOf(idInsert));

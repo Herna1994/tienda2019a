@@ -63,27 +63,7 @@ public class ClienteRoll {
         return cstmt.getBoolean(2);
     }
 
-      public String getClaveBloqueo(String nif) throws SQLException {
-        try{
-            CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call get_clave_bloqueo(?, ?)}");
-            try{
-                cstmt.setString(1,nif);
-                cstmt.registerOutParameter(2, Types.VARCHAR);
-                cstmt.execute();
-                return  cstmt.getString(2);
-            }
-            finally {
-                if (cstmt != null) {
-                    cstmt.close();
-                }
-            }
-        }
-        catch (Exception ignore) {
-        }
 
-        return "null";
-
-    }
 
       public DaperClienteEntity getCliente(String dni) {
 
@@ -106,27 +86,7 @@ public class ClienteRoll {
         return cursor;
     }
 
-      public String getEmailClient(String nif) throws SQLException {
-        try{
-            CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call get_email_client(?, ?)}");
-            try{
-                cstmt.setString(1,nif);
-                cstmt.registerOutParameter(2, Types.VARCHAR);
-                cstmt.execute();
-                return  cstmt.getString(2);
-            }
-            finally {
-                if (cstmt != null) {
-                    cstmt.close();
-                }
-            }
-        }
-        catch (Exception ignore) {
-        }
 
-        return "null";
-
-    }
 
       public ArrayList<?> getListaClientes() {
 
@@ -174,15 +134,7 @@ public class ClienteRoll {
         return clienteConnectionPool.insertUpdateDelete(sql);
     }
 
-      public boolean lockedClient(String user, String clave) throws SQLException, ClassNotFoundException {
 
-        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call locked_client( ?, ?, ?)}");
-        cstmt.setString(1,user);
-        cstmt.setString(2,clave);
-        cstmt.registerOutParameter(3, Types.BOOLEAN);
-        cstmt.execute();
-        return  cstmt.getBoolean(3);
-    }
 
       public boolean update_client_daper (DaperClienteEntity cliente, String usuario) throws SQLException, ClassNotFoundException {
 
@@ -260,6 +212,62 @@ public class ClienteRoll {
         cstmt.execute();
         return  cstmt.getInt(13);
     }
+
+    public boolean lockedClient(int id, String clave) throws SQLException, ClassNotFoundException {
+
+        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call locked_client( ?, ?, ?)}");
+        cstmt.setInt(1,id);
+        cstmt.setString(2,clave);
+        cstmt.registerOutParameter(3, Types.BOOLEAN);
+        cstmt.execute();
+        return  cstmt.getBoolean(3);
+    }
+
+    public String getEmailClient(int id) throws SQLException {
+        try{
+            CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call get_email_client(?, ?)}");
+            try{
+                cstmt.setInt(1,id);
+                cstmt.registerOutParameter(2, Types.VARCHAR);
+                cstmt.execute();
+                return  cstmt.getString(2);
+            }
+            finally {
+                if (cstmt != null) {
+                    cstmt.close();
+                }
+            }
+        }
+        catch (Exception ignore) {
+        }
+
+        return "null";
+
+    }
+
+    public String getClaveBloqueo(int id) throws SQLException {
+        try{
+            CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call get_clave_bloqueo(?, ?)}");
+            try{
+                cstmt.setInt(1,id);
+                cstmt.registerOutParameter(2, Types.VARCHAR);
+                cstmt.execute();
+                return  cstmt.getString(2);
+            }
+            finally {
+                if (cstmt != null) {
+                    cstmt.close();
+                }
+            }
+        }
+        catch (Exception ignore) {
+        }
+
+        return "null";
+
+    }
+
+
 
 }
 

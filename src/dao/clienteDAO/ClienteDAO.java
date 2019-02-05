@@ -45,17 +45,13 @@ public class ClienteDAO {
         return clienteRoll.deleteClient(nif);
     }
 
-    public String getClaveBloqueo(String nif) throws SQLException {
-        return clienteRoll.getClaveBloqueo(nif);
-    }
+
 
     public DaperClienteEntity getCliente(String nif){
         return (DaperClienteEntity) clienteRoll.getCliente(nif);
     }
 
-    public String getEmailClient(String nif) throws SQLException {
-        return clienteRoll.getEmailClient(nif);
-    }
+
 
     public ArrayList getListaClientes(){
         return clienteRoll.getListaClientes();
@@ -75,11 +71,7 @@ public class ClienteDAO {
        return "null";
     }
 
-    public boolean locked_client(String nif) throws SQLException, ClassNotFoundException {
-        String uuid = UUID.randomUUID().toString();
-        String clave = uuid.substring(0, Math.min(uuid.length(), 50));
-      return clienteRoll.lockedClient(nif, clave);
-    }
+
 
     public boolean update_client_daper(DaperClienteEntity cliente, String usuario) throws SQLException, ClassNotFoundException {
 
@@ -113,4 +105,17 @@ public class ClienteDAO {
         return 0;
     }
 
+    public boolean locked_client(int id) throws SQLException, ClassNotFoundException {
+        String uuid = UUID.randomUUID().toString();
+        String clave = uuid.substring(0, Math.min(uuid.length(), 50));
+        return clienteRoll.lockedClient(id, clave);
+    }
+
+    public String getEmailClient(int id) throws SQLException {
+        return clienteRoll.getEmailClient(id);
+    }
+
+    public String getClaveBloqueo(int id) throws SQLException {
+        return clienteRoll.getClaveBloqueo(id);
+    }
 }
