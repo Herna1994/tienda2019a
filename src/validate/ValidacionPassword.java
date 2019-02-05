@@ -11,7 +11,6 @@ public class ValidacionPassword extends ValidacionRegularExpression implements I
     // Al menos un dígito y Al menos 1 caracter especial
     //  No espacios en blanco
 
-    private static final String mensajeError = "Password Incorrecta";
 
     private String value;
 

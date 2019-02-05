@@ -24,11 +24,11 @@ public class CPRoll {
 
     private void conectar() {
 
-        System.out.println("usu2:" + this.usuario + " pas2:" + this.pass);
+        //System.out.println("usu2:" + this.usuario + " pas2:" + this.pass);
         acceso = AccesoDB.getMiConexion();
         try {
             acceso.conectar("com.mysql.jdbc.Driver", //com.mysql.cj.jdbc.Driver",
-                    "jdbc:mysql://localhost/tienda_harnina20189vistas?useInformationSchema=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
+                    "jdbc:mysql://localhost/tienda2019vista?useInformationSchema=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
                     this.usuario,
                     this.pass);
         } catch (ClassNotFoundException e) {
@@ -46,13 +46,13 @@ public class CPRoll {
         ArrayList<String> listaCP = new  ArrayList<String>();
         String cpe = new String();
         try{
-            CallableStatement cstmt = (CallableStatement) acceso.getConexion().prepareCall("{call get_cp()}");
+            CallableStatement cstmt = (CallableStatement) acceso.getConexion().prepareCall("{call getCp()}");
             try{
                 results = cstmt.executeQuery();
 
                 while (results.next()) {
 
-                    cpe = results.getString("CodigoPostal");
+                    cpe = results.getString("postalCode");
 
                     listaCP.add(cpe);
                 }

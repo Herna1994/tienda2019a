@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "daper_cliente", schema = "tienda_harnina20189vistas")
+@Table(name = "user", schema = "tienda2019vista")
 public class DaperClienteEntity {
 
     private String nifCliente;

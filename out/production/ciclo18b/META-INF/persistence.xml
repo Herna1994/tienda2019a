@@ -3,8 +3,10 @@
 
     <persistence-unit name="NewPersistenceUnit">
         <class>entity.PersonaEntity</class>
+        <class>entity.UserEntity</class>
+        <class>entity.ClientEntity</class>
         <properties>
-            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/pagina2018vista"/>
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/tienda2019vista"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/pagina2018vista"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

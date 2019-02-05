@@ -7,8 +7,6 @@ public class ValidacionNIE implements IValidacion {
 
     private String nie;
 
-    private static final String mensajeError = "NIE Incorrecto";
-
     public  ValidacionNIE(String nie){
         this.nie = nie;
     }

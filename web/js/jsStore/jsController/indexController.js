@@ -6,7 +6,7 @@
 
 
     var ajax = STORE.Ajax;
-    var llamada;
+
 
     STORE.namespace('STORE.Index.formAddClient');
     STORE.namespace('STORE.Index.formSessionClient');
@@ -20,28 +20,57 @@
         setTimeout(step, 100);
     }
 
-    STORE.Index.formAddClient = function(){
-
-        $("cuerpo").innerHTML = STORE.IndexTemplate.formAddUser + STORE.IndexTemplate.formAddClient;
+    STORE.Index.formAddClient = function() {
+        var llamada;
+        $("cuerpo").innerHTML = STORE.IndexTemplate.formAddClient + STORE.IndexTemplate.formAddUser;
         STORE.Error = STORE.managementError();
         STORE.Submit = STORE.managementSubmit();
         STORE.strategyOneByOne();
 
-        $("submit").addEventListener("click",function () {
+        $("submit").addEventListener("click", function () {
             var envio = {
-
-
+                nif: $("nif").value,
+                postalCode: $("postalCode").value,
+                address: $("address").value,
+                phone: $("phone").value,
+                mobile: $("mobile").value,
+                email: $("email").value,
+                user: $("user").value,
+                password: $("password").value,
+                lastname: $("lastname").value,
+                firstname: $("firstname").value,
+                birthdate: $("birthdate").value,
+                sex: $("sex").value
             };
-            alert("envio json add");
-        });
-    };
+            var json = JSON.stringify(envio);
+            llamada = new ajax.CargadorContenidos("/valiCliAdd", function(){
+                
+                var estado = JSON.parse(llamada.req.responseText);
+                $("alertaError").innerText ="";
+                if ((typeof estado === "number") && (estado > 0) ){
+                    sessionStorage.setItem('idCliente', estado);
+                    location.reload();
+                }
+                else {
+                    var estado = JSON.parse(llamada.req.responseText);
+                    estado.forEach(function (error) {
+                        alert(error.control + "error en el front:" + error.mensajeError);
+                        $(error.control).setAttribute('style', 'backgroundColor:' + STORE.Error.get_colorError() + ' !important');
+                        $("alertaError").innerText += error.mensajeError;
+                        STORE.Error.on();
+                    });
+                }
 
+            }, json);
+        });
+    }
     STORE.Index.formSessionClient = function(){
+        var llamada;
         $("cuerpo").innerHTML = STORE.IndexTemplate.formSessionClient;
         STORE.Error = STORE.managementError();
         STORE.Submit = STORE.managementSubmit();
         STORE.strategyOneByOne();
-        $("submit").addEventListener("click",function () {
+        $("submit").addEventListener("click",function(){
 
             var envio = {
                 user : $("user").value,
@@ -52,7 +81,7 @@
 
             llamada = new ajax.CargadorContenidos("/valiCliSesion", function(){
 
-                var estado = JSON.parse(llamada.req.responseText,JSON.dateParser);
+                var estado = JSON.parse(llamada.req.responseText);
 
                 if ((typeof estado === "number") && (estado > 0)) {
                     sessionStorage.setItem('idCliente', estado);
@@ -110,8 +139,6 @@
         });
 
     };
-
-
 
     $("op_addClient").addEventListener("click",STORE.Index.formAddClient);
     $("op_initSession").addEventListener("click",STORE.Index.formSessionClient);

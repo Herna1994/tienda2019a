@@ -62,7 +62,7 @@ public class ValidacionNIFCIF implements IValidacion {
                             ||
                             // ¿el caracter de control es válido como dígito?
                             (CONTROL_SOLO_LETRAS.indexOf(letraIni) < 0 && digitoD == Character.digit(caracterFin, 10));
-            if(esControlValido) return Error.ERROR_NULL;
+            if(esControlValido) return null;
                     else return Error.ERROR_CIF_BAD;
 
         } catch (Exception e) {

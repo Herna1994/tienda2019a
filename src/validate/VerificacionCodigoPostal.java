@@ -31,6 +31,6 @@ public class VerificacionCodigoPostal implements IValidacion {
             e.printStackTrace();
         }
 
-        return Error.ERROR_NULL;
+        return null;
     }
 }

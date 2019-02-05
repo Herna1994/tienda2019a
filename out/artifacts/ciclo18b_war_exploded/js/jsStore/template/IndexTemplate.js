@@ -1,12 +1,7 @@
 
 STORE.namespace('STORE.IndexTemplate');
 STORE.IndexTemplate = {
-    formAddUser :
-        "<div class='contenido01'>" +
-        "    <form enctype='multipart/form-data' id='client_register' " +
-        "        <div class='menu s3 caja03'>" +
-        "            <h4>New User</h4>" +
-        "            <div id='div_nif'>" +
+    formAddUser :"  <div id='div_nif'>" +
         "                <label for='nif'></label>" +
         "                <input class='etiqueta s8' id='nif' name = 'nif' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarDniNieCif' required placeholder='input your dni' title='nif'>" +
         "            </div>" +
@@ -40,23 +35,23 @@ STORE.IndexTemplate = {
         "                <label for='password'></label>" +
         "                <input class='etiqueta s8' id='password' name ='password' value='' type='password' placeholder='Contraseña' data-functioncallback='ValidacionExpresionRegular.validarPassword'>" +
         "            </div>" +
-        "            <div class='fileinputs etiqueta s8' id='div_clientImage'>" +
-        "                  <input class='etiqueta s8 file' id='clientImage' type='file' name='imagenCliente' data-functioncallback= 'ValidarFicheroName.validarImagenName' required accept='image/png, image/jpeg' placeholder='input your Avatar' title='3 to 120 characters'>" +
-        "                 <div class='fakefile'>" +
-        "                     <label class='labelInput' for='idFile'>Elije tu foto</label>" +
-        "                     <input id='idFile' name='myFile'>" +
-        "                  </div>" +
-        "             </div>",
+        "            <div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
+        "            <button id='submit' >Enviar</button>" +
+        "        </div>" +
+        "    </div>" +
+        "</div> ",
 
-    formAddClient :
-
-        "            <div id='div_clientFirstName'>" +
-        "                <label class='labelInput' for='clientFirstName'></label>" +
-        "                <input class='etiqueta s8' id='clientFirstName' name ='nombreCliente' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarLetrasConEspacio' size='24' minlength='3' maxlength='80' required placeholder='input your FirstName' title='3 to 50 characters'>" +
+    formAddClient : "<div class='contenido01'>" +
+        "    <div id='client_register' " +
+        "        <div class='menu s3 caja03'>" +
+        "            <h4>New Client</h4>" +
+        "            <div id='div_firstname'>" +
+        "                <label class='labelInput' for='firstname'></label>" +
+        "                <input class='etiqueta s8' id='firstname' name ='firstname' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarLetrasConEspacio' size='24' minlength='3' maxlength='80' required placeholder='input your FirstName' title='3 to 50 characters'>" +
         "            </div>" +
-        "            <div id='div_clientLastName'>" +
-        "                <label class='labelInput' for='clientLastName'></label>" +
-        "                <input class='etiqueta s8' id='clientLastName' name='apellidosCliente' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarLetrasConEspacio' minlength='5' maxlength='100' required placeholder='input your LastName' title='3 to 70 characters'>" +
+        "            <div id='div_lastname'>" +
+        "                <label class='labelInput' for='lastname'></label>" +
+        "                <input class='etiqueta s8' id='lastname' name='lastname' value='' type='text' data-functioncallback='ValidacionExpresionRegular.validarLetrasConEspacio' minlength='5' maxlength='100' required placeholder='input your LastName' title='3 to 70 characters'>" +
         "            </div>" +
         "            <div id='div_birthdate'>" +
         "                <label class='labelInput' for='birthdate'></label>" +
@@ -69,12 +64,8 @@ STORE.IndexTemplate = {
         "                    <option value='m'>Hombre</option>" +
         "                    <option value='f'>Mujer</option>" +
         "                </select>" +
-        "            </div>" +
-        "            <div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
-        "            <button id='submit' type='submit'>Enviar</button>" +
-        "        </div>" +
-        "    </form>" +
-        "</div> ",
+        "            </div>",
+
     formSessionClient : "<div class='contenido01'>" +
         "<div id='client_register'>" +
           "<input type='hidden' value = '' name = 'opcion'>" +

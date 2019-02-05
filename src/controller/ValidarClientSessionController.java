@@ -1,6 +1,6 @@
 package controller;
 
-import cliente.ComandoValidarLoginCliente;
+import cliente.ComandValidateLogin;
 import cliente.DataLoginCliente;
 import dao.clienteDAO.ClienteDAO;
 import entity.LoginClienteHarnina;
@@ -8,10 +8,8 @@ import error.Error;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import reflexion.ObjectTransferSession;
-import util.ErrorManager;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +56,7 @@ public class ValidarClientSessionController extends HttpServlet {
 
         LoginClienteHarnina loginClienteHarnina = new LoginClienteHarnina(user,password);
 
-        ComandoValidarLoginCliente comandoValidarLoginCliente = new ComandoValidarLoginCliente(loginClienteHarnina);
+        ComandValidateLogin comandoValidarLoginCliente = new ComandValidateLogin(loginClienteHarnina);
 
         HashMap<String,Error> listaErrores = comandoValidarLoginCliente.getCommands();
 
@@ -116,9 +113,6 @@ public class ValidarClientSessionController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(arrayJson.toJSONString());
         }
-
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws

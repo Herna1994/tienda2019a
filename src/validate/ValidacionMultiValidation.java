@@ -32,18 +32,6 @@ public class ValidacionMultiValidation {
         }
         return errors;
     }
-    /*
-    public static String validar(List<IValidacion> validador ) {
-
-        for(IValidacion vali:validador){
-
-            if (!vali.validar()) {
-                return vali.getError();
-            }
-        }
-        return "";
-    }
-*/
 
 }
 

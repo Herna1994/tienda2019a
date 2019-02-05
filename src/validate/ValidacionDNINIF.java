@@ -22,7 +22,6 @@ public class ValidacionDNINIF implements IValidacion {
         }
 
         if(soloNumeros(losNumeros) == true && getLetraDNI().equals(letraMayuscula)) {
-
             return null;
         }
        return Error.ERROR_NIF_8DIGIT_LETTER;

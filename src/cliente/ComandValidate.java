@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public interface ComandoValidarCliente {
+public interface ComandValidate {
     HashMap<String,Error> getCommands() throws SQLException, ClassNotFoundException;
 }

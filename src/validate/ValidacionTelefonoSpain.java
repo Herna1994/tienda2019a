@@ -5,8 +5,6 @@ import error.Error;
 public class ValidacionTelefonoSpain extends ValidacionRegularExpression implements IValidacion {
     private static final String patron = "^(\\+34|0034|34)?[6789]\\d{8}$";//"^(\+34|0034|34)?[6789]\d{8}$";
 
-    private static final String mensajeError = "Telefono Español Incorrecto";
-
     private String value;
     public ValidacionTelefonoSpain(String value){
 

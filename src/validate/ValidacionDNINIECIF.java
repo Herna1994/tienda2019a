@@ -12,20 +12,18 @@ public class ValidacionDNINIECIF implements IValidacion {
 
     private String documento;
 
-    private static final String mensajeError = "Documento Incorrecto";
-
-
-    public ValidacionDNINIECIF(String documento) {
+   public ValidacionDNINIECIF(String documento) {
         this.documento = documento;
     }
 
     @Override
     public Error exec() {
         ValidacionDNINIF validacionDNINIF = new ValidacionDNINIF(documento);
+
         if (validacionDNINIF.exec() != null) {
             ValidacionNIE validacionNIE = new ValidacionNIE(documento);
             if (validacionNIE.exec() != null) {
-                ValidacionNIFCIF validacionNIFCIF = new ValidacionNIFCIF(documento);
+               ValidacionNIFCIF validacionNIFCIF = new ValidacionNIFCIF(documento);
                 if (validacionNIFCIF.exec() != null) {
                     return Error.ERROR_NIF_8DIGIT_LETTER;
                 }

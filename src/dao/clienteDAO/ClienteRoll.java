@@ -1,11 +1,8 @@
 package dao.clienteDAO;
 
-import cliente.DataPersonCliente;
 import com.mysql.jdbc.CallableStatement;
 import dao.poolConexion.ClienteMySqlConnectionPool;
-import entity.ClienteEntity;
-import entity.DaperClienteEntity;
-import entity.LoginClienteHarnina;
+import entity.*;
 import reflexion.RsTransferArraylist;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,26 +38,7 @@ public class ClienteRoll {
         clienteConnectionPool.useConnection(); // Se crea el pool
     }
 
-      public boolean  add_cliente(DataPersonCliente cliente) throws SQLException, ClassNotFoundException {
-
-        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call add_cliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
-        cstmt.setString(1,cliente.getNifCliente());
-        cstmt.setString(2,cliente.getApellidosCliente());
-        cstmt.setString(3,cliente.getNombreCliente());
-        cstmt.setString(4,cliente.getCodigoPostalCliente());
-        cstmt.setString(5,cliente.getDomicilioCliente());
-        cstmt.setString(6,cliente.getFechaNacimiento());
-        cstmt.setString(7,cliente.getTelefonoCliente());
-        cstmt.setString(8,cliente.getMovilCliente());
-        cstmt.setString(9,cliente.getSexoCliente());
-        cstmt.setString(10,cliente.getEmailCliente());
-        cstmt.setString(11,cliente.getImagenCliente());
-        cstmt.setString(12,cliente.getUsuarioCliente());
-        cstmt.setString(13,cliente.getPasswordCliente());
-        cstmt.registerOutParameter(14, Types.BOOLEAN);
-        cstmt.execute();
-        return  cstmt.getBoolean(14);
-    }
+     //    ----------------   ver anteriores
 
       public Boolean deleteClient (String nif) throws SQLException {
 
@@ -239,7 +217,7 @@ public class ClienteRoll {
         return  cstmt.getBoolean(4);
     }
 
-// ---------------- 2 0 1 9 -----
+// ---------------- version    2  0  1  9   -----------------------
 
     public int getIdLogin(String user, String password){
         try{
@@ -261,6 +239,26 @@ public class ClienteRoll {
         }
 
         return 0;
+    }
+
+    public int  add_client(UserEntity userEntity, ClientEntity clientEntity) throws SQLException, ClassNotFoundException {
+
+        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call add_client(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+        cstmt.setString(1,userEntity.getNif());
+        cstmt.setString(2,userEntity.getPostalCode());
+        cstmt.setString(3,userEntity.getAddress());
+        cstmt.setString(4,userEntity.getPhone());
+        cstmt.setString(5,userEntity.getMobile());
+        cstmt.setString(6,userEntity.getEmail());
+        cstmt.setString(7,userEntity.getUser());
+        cstmt.setString(8,userEntity.getPassword());
+        cstmt.setString(9,clientEntity.getLastname());
+        cstmt.setString(10,clientEntity.getFirstname());
+        cstmt.setString(11,clientEntity.getBirthdate());
+        cstmt.setString(12,clientEntity.getSex());
+        cstmt.registerOutParameter(13, Types.INTEGER);
+        cstmt.execute();
+        return  cstmt.getInt(13);
     }
 
 }

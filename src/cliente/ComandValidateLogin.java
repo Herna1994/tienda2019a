@@ -5,16 +5,13 @@ import error.Error;
 import validate.ValidacionPassword;
 import validate.ValidacionUsuario;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
-public class ComandoValidarLoginCliente implements ComandoValidarCliente {
+public class ComandValidateLogin implements ComandValidate {
 
     LoginClienteHarnina loginClienteHarnina = null;
 
-   public ComandoValidarLoginCliente(LoginClienteHarnina loginClienteHarnina){
+   public ComandValidateLogin(LoginClienteHarnina loginClienteHarnina){
       this.loginClienteHarnina = loginClienteHarnina;
    }
     public HashMap<String,Error> getCommands(){
