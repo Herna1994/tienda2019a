@@ -4,7 +4,7 @@ if(typeof id === "undefined" || id == null){
 }
 var dados = ['dado informatica','dado harnina','dadoCliente'];
 
-var imagenes = ['../../img/escudo02.png','../../img/harni01.png', '../../img/fotoClient/'+ id + '.png'];
+var imagenes = ['../../img/escudo02.png','../../img/harni01.png', '../../img/fotoClient/'+ id + '.png?Math.random()'];
 var clases = ['cara frontal','cara trasera','cara derecha','cara izquierda','cara arriba','cara abajo'];
 
 var creaImagen = function(imag){

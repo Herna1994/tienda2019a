@@ -2,7 +2,7 @@
 STORE.namespace('STORE.ClientTemplate');
 STORE.ClientTemplate = {
     formImgUser :"<div class=\"contenido01\">\n" +
-        //"    <img src= \"../img/fotoClient/<%=session.getAttribute(\"nif\")%>.png?<%=Math.random()%>\" alt=\"\" height=\"200px\" width=\"300px\">\n" +
+        "    <img src= \"../img/fotoClient/" + sessionStorage.getItem("idCliente") + ".png?" + Math.random() +" alt=\"\" height=\"200px\" width=\"300px\">\n" +
         "    <form enctype=\"multipart/form-data\" id=\"client_register\" method=\"POST\" action=\"/UpCliAvaCon\">\n" +
         "        <div class=\"menu s3 caja03\">\n" +
         "            <h4>New Image</h4>\n" +
@@ -21,17 +21,32 @@ STORE.ClientTemplate = {
 
     formLoginUser : "<div class='contenido01'>" +
         "<div id='client_register'>" +
-        "<input type='hidden' value = '' name = 'opcion'>" +
-        "<div class='menu s3 caja03'>" +
-        "<div id='div_user'>" +
-        "<label class='labelInput' for='user'></label>" +
-        "<input class='etiqueta s8' id='user' name ='user'  type='text' data-functioncallback='ValidacionExpresionRegular.validarUsuario' size='24' minlength='7' maxlength='7' required placeholder='input your User' title='3 to 50 characters'>" +
-        "</div>" +
-        "<div id='div_password'>" +
-        "<label for='password'></label>" +
-        "<input class='etiqueta s8' id='password' name ='password'  type='password' placeholder='Contraseña' data-functioncallback='ValidacionExpresionRegular.validarPassword'>" +
-        "</div>" +
-        "<div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
-        "<button id='submit'>Enviar</button>" +
+        "    <div class='menu s3 caja03'>" +
+        "       <h4>Verify</h4>" +
+        "       <div id='div_user'>" +
+        "           <label class='labelInput' for='user'></label>" +
+        "           <input class='etiqueta s8' id='user' name ='user'  type='text' data-functioncallback='ValidacionExpresionRegular.validarUsuario' size='24' minlength='7' maxlength='7' required placeholder='input your User' title='7 characters'>" +
+        "       </div>" +
+        "       <div id='div_password'>" +
+        "          <label for='password'></label>" +
+        "          <input class='etiqueta s8' id='password' name ='password'  type='password' placeholder='Contraseña' data-functioncallback='ValidacionExpresionRegular.validarPassword'>" +
+        "       </div>" +
+        "       <div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
+        "       <button id='submit'>Enviar</button>" +
+        "</div>  </div> </div>",
+    formUpdateLoginUser : "<div class='contenido01'>" +
+        "<div id='client_register'>" +
+        "    <div class='menu s3 caja03'>" +
+        "       <h4>New Login</h4>" +
+        "       <div id='div_user'>" +
+        "          <label class='labelInput' for='user'></label>" +
+        "          <input class='etiqueta s8' id='user' name ='user'  type='text' data-functioncallback='ValidacionExpresionRegular.validarUsuario' size='24' minlength='7' maxlength='7' required placeholder='input your New User' title='7 characters'>" +
+        "       </div>" +
+        "       <div id='div_password'>" +
+        "            <label for='password'></label>" +
+        "            <input class='etiqueta s8' id='password' name ='password'  type='password' placeholder='Contraseña' data-functioncallback='ValidacionExpresionRegular.validarPassword' required placeholder='input your New User'>" +
+        "       </div>" +
+        "       <div class='etiqueta errorColor' id='alertaError'>Error:</div>" +
+        "       <button id='submit'>Enviar</button>" +
         "</div>  </div> </div>"
 }

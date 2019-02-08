@@ -52,7 +52,6 @@
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.45" level="project" />
     <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="com.sun.mail:javax.mail:1.4.7" level="project" />
-    <orderEntry type="library" name="mail" level="project" />
     <orderEntry type="library" name="org.codehaus.jackson:jackson-xc:1.9.13" level="project" />
     <orderEntry type="library" name="jackson:jackson-asl:0.9.3" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.2" level="project" />
@@ -68,5 +67,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="javax.mail:mail:1.4" level="project" />
   </component>
 </module>

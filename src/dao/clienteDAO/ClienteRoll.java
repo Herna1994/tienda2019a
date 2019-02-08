@@ -158,16 +158,7 @@ public class ClienteRoll {
         return  cstmt.getBoolean(12);
     }
 
-      public boolean  update_client_login(LoginClienteHarnina cliente) throws SQLException, ClassNotFoundException {
 
-        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call update_client_login( ?, ?, ?, ?)}");
-        cstmt.setString(3,cliente.getNifCliente());
-        cstmt.setString(1,cliente.getUsuarioCliente());
-        cstmt.setString(2,cliente.getPasswordCliente());
-        cstmt.registerOutParameter(4, Types.BOOLEAN);
-        cstmt.execute();
-        return  cstmt.getBoolean(4);
-    }
 
 // ---------------- version    2  0  1  9   -----------------------
 
@@ -267,7 +258,35 @@ public class ClienteRoll {
 
     }
 
+    public boolean 	unlock_user( String claveBloqueo, String email) throws SQLException, ClassNotFoundException {
 
+        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call unlock_user( ?, ?, ?)}");
+        cstmt.setString(1,claveBloqueo);
+        cstmt.setString(2,email);
+        cstmt.registerOutParameter(3, Types.BOOLEAN);
+        cstmt.execute();
+        return  cstmt.getBoolean(3);
+    }
 
+    public boolean  update_login(LoginClienteHarnina login) throws SQLException, ClassNotFoundException {
+
+        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call update_login( ?, ?, ?, ?)}");
+        cstmt.setInt(1, login.getIdCliente());
+        cstmt.setString(2,login.getUsuarioCliente());
+        cstmt.setString(3,login.getPasswordCliente());
+        cstmt.registerOutParameter(4, Types.BOOLEAN);
+        cstmt.execute();
+        return  cstmt.getBoolean(4);
+    }
+
+    public boolean 	can_Is_New_User( LoginClienteHarnina login) throws SQLException, ClassNotFoundException {
+
+        CallableStatement cstmt = (CallableStatement) clienteConnectionPool.getConnection().prepareCall("{call canIsNewUser( ?, ?, ?)}");
+        cstmt.setString(1,login.getUsuarioCliente());
+        cstmt.setInt(2,login.getIdCliente());
+        cstmt.registerOutParameter(3, Types.BOOLEAN);
+        cstmt.execute();
+        return  cstmt.getBoolean(3);
+    }
 }
 

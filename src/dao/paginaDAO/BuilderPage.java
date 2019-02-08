@@ -52,7 +52,13 @@ public class BuilderPage {
         String js = "";
         List<ObjectPathName> jsAll = paginaDao.getJsAll();
         for (ObjectPathName jss :jsAll){
-            js +=  "<script src ='" + "../" +  jss.getPath() + "/" + jss.getName() + ".js'></script>";
+            if(jss.getName().equals("dado")){
+                js +=  "<script src ='" + "../" +  jss.getPath() + "/" + jss.getName() + ".js?Math.random()'></script>";
+            }
+            else {
+                js +=  "<script src ='" + "../" +  jss.getPath() + "/" + jss.getName() + ".js'></script>";
+            }
+
         }
         return  js;
 

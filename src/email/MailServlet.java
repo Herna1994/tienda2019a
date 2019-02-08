@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-@WebServlet("/Mail")
+@WebServlet("/miMail")
 public class MailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
@@ -35,7 +35,7 @@ public class MailServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String username = "lucianoluqui55@gmail.com";
-        final String password = "*******";
+        final String password = "luciano2018";
         HttpSession session = request.getSession();
         int id_client = (Integer) session.getAttribute("idCliente");
         String email = "";
@@ -100,8 +100,8 @@ public class MailServlet extends HttpServlet {
             request.setAttribute("mensaje", "Cliente: bloqueado, email NO enviado");
 
         }
-        rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(String.valueOf("ok:email enviado"));
 
     }
 

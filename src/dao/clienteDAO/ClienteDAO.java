@@ -78,12 +78,7 @@ public class ClienteDAO {
         return clienteRoll.update_client_daper(cliente,usuario);
     }
 
-    public boolean update_client_login(LoginClienteHarnina cliente) throws SQLException, ClassNotFoundException {
-        System.out.println("nif" + cliente.getNifCliente());
-        System.out.println("usuario" + cliente.getUsuarioCliente());
-       System.out.println("password" + cliente.getPasswordCliente());
-      return clienteRoll.update_client_login(cliente);
-  }
+
 
 
 // -------------------- version  2  0  1  9   ---------------------
@@ -117,5 +112,17 @@ public class ClienteDAO {
 
     public String getClaveBloqueo(int id) throws SQLException {
         return clienteRoll.getClaveBloqueo(id);
+    }
+
+    public boolean 	unlock_user( String claveBloqueo, String email) throws SQLException, ClassNotFoundException {
+        return clienteRoll.unlock_user(claveBloqueo, email);
+    }
+
+    public boolean update_login(LoginClienteHarnina login) throws SQLException, ClassNotFoundException {
+         return clienteRoll.update_login(login);
+    }
+
+    public boolean 	can_Is_New_User( LoginClienteHarnina login)throws SQLException, ClassNotFoundException {
+        return clienteRoll.can_Is_New_User(login);
     }
 }

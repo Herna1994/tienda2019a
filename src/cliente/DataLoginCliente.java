@@ -35,11 +35,11 @@ public  class DataLoginCliente {
 
     public void setNifCliente(String nifCliente) {
 
-        loginClienteEntity.setNifCliente(nifCliente);
+       // loginClienteEntity.setNifCliente(nifCliente);
     }
 
     public String getNifCliente() {
-        return loginClienteEntity.getNifCliente();
+        return ""; //loginClienteEntity.getNifCliente();
     }
 
     public String getUsuarioCliente() {
