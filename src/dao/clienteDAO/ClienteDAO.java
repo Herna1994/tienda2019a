@@ -1,9 +1,7 @@
 package dao.clienteDAO;
 
 import entity.*;
-
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class ClienteDAO {
@@ -12,7 +10,7 @@ public class ClienteDAO {
 
     public ClienteDAO() throws SQLException, ClassNotFoundException {
     }
-
+/*
     public int add_cliente(ClienteEntity cliente) {
        String sql = "INSERT INTO `cliente`(`NifCliente`, `ApellidosCliente`, `NombreCliente`, `CodigoPostalCliente`, `DomicilioCliente`, `FechaNacimiento`, `TelefonoCliente`, `MovilCliente`, `SexoCliente`, `EmailCliente`, `ImagenCliente`, `UsuarioCliente`, `PasswordCliente`) " + " VALUES ('" + cliente.getNifCliente() + "','" +
                cliente.getApellidosCliente()+ "','" +
@@ -57,7 +55,7 @@ public class ClienteDAO {
         return clienteRoll.getListaClientes();
     }
 
-    public String  get_nif_login(LoginClienteHarnina clientloginEntity) {
+    public String  get_nif_login(LoginEntity clientloginEntity) {
 
       try
        {
@@ -79,7 +77,7 @@ public class ClienteDAO {
     }
 
 
-
+*/
 
 // -------------------- version  2  0  1  9   ---------------------
 
@@ -118,11 +116,28 @@ public class ClienteDAO {
         return clienteRoll.unlock_user(claveBloqueo, email);
     }
 
-    public boolean update_login(LoginClienteHarnina login) throws SQLException, ClassNotFoundException {
+    public boolean update_login(LoginEntity login) throws SQLException, ClassNotFoundException {
          return clienteRoll.update_login(login);
     }
 
-    public boolean 	can_Is_New_User( LoginClienteHarnina login)throws SQLException, ClassNotFoundException {
+    public boolean 	can_Is_New_User( LoginEntity login)throws SQLException, ClassNotFoundException {
         return clienteRoll.can_Is_New_User(login);
+    }
+
+    public boolean delete_user(int id) throws SQLException, ClassNotFoundException {
+        return clienteRoll.delete_user(id);
+    }
+
+    public ClientDataEntity getDataClient(int id) {
+
+        return clienteRoll.getDataClient(id);
+    }
+    public ClientDataEntity getDataClient2(int id) throws SQLException, ClassNotFoundException {
+
+        return clienteRoll.getDataClient2(id);
+    }
+    public boolean updateDataClient(ClientDataEntity clientDataEntity)throws SQLException, ClassNotFoundException {
+
+        return clienteRoll.updateDataClient(clientDataEntity);
     }
 }

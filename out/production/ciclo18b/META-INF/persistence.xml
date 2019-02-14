@@ -6,6 +6,7 @@
         <class>entity.UserEntity</class>
         <class>entity.ClientEntity</class>
         <class>entity.PageEntity</class>
+        <class>entity.ClientDataEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/tienda2019vista"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>

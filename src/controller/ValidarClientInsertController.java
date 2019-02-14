@@ -42,9 +42,9 @@ public class ValidarClientInsertController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         session = request.getSession();
-        System.out.println("Hola Servidor");
+
         miUsuario = request.getParameter("json");
-        System.out.println("miUsuario:" + miUsuario);
+
         JSONParser parser = new JSONParser();
 
         try {

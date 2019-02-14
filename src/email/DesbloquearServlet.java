@@ -21,7 +21,7 @@ public class DesbloquearServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String claveBloqueo = request.getParameter("id");
+        String claveBloqueo = request.getParameter("clave");
         String email = request.getParameter("email");
         String mensaje = "";
 
@@ -32,7 +32,7 @@ public class DesbloquearServlet extends HttpServlet {
 
             try {
                 if (new ClienteDAO().unlock_user(claveBloqueo, email)) {
-
+                    session.setAttribute("intento",0);
                     mensaje = "Usuario desbloqueado";
                 } else {
                     mensaje = "Error con unlock_user";

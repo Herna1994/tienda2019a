@@ -3,7 +3,7 @@ package controller;
 import cliente.ComandValidateLogin;
 import cliente.DataLoginCliente;
 import dao.clienteDAO.ClienteDAO;
-import entity.LoginClienteHarnina;
+import entity.LoginEntity;
 import error.Error;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -53,9 +53,9 @@ public class ValidarClientSessionController extends HttpServlet {
             mensaje = e.getMessage();
         }
 
-        LoginClienteHarnina loginClienteHarnina = new LoginClienteHarnina(user,password);
+        LoginEntity loginEntity = new LoginEntity(user,password);
 
-        ComandValidateLogin comandoValidarLoginCliente = new ComandValidateLogin(loginClienteHarnina);
+        ComandValidateLogin comandoValidarLoginCliente = new ComandValidateLogin(loginEntity);
 
         HashMap<String,Error> listaErrores = comandoValidarLoginCliente.getCommands();
 

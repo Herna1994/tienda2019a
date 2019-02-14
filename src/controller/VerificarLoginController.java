@@ -2,7 +2,7 @@ package controller;
 
 import cliente.DataLoginCliente;
 import dao.clienteDAO.ClienteDAO;
-import entity.LoginClienteHarnina;
+import entity.LoginEntity;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -12,7 +12,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +46,7 @@ public class VerificarLoginController extends HttpServlet {
         } catch (Exception e) {
             mensaje = e.getMessage();
         }
-        LoginClienteHarnina loginClienteHarnina = new LoginClienteHarnina(user,password);
+        LoginEntity loginEntity = new LoginEntity(user,password);
 
         try {
             clienteDAO = new ClienteDAO();
@@ -75,8 +74,9 @@ public class VerificarLoginController extends HttpServlet {
 
             if (!dataLoginCliente.disponibilidadIntento()) {
                 // Bloqueamos a nivel de la BB DD
+                int id_client = (Integer) session.getAttribute("idCliente");
                 try {
-                    clienteDAO.locked_client((Integer) session.getAttribute("idCliente"));
+                    clienteDAO.locked_client(id_client);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -87,7 +87,7 @@ public class VerificarLoginController extends HttpServlet {
                 final String username = "lucianoluqui55@gmail.com";
                 final String password = "luciano2018";
                 HttpSession session = request.getSession();
-                int id_client = (Integer) session.getAttribute("idCliente");
+
                 String email = "";
                 String clave = "";
                 ClienteDAO clienteDAO = null;
@@ -99,12 +99,10 @@ public class VerificarLoginController extends HttpServlet {
                     e.printStackTrace();
                 }
 
-                System.out.println("id client" + id_client);
-
                 try {
                     // Recupero el email para su envio
                     email = (String) clienteDAO.getEmailClient(id_client);
-                    System.out.println("email in MailServlet" + email);
+
                 }catch (Exception e) {
                     mensaje = e.getMessage();
                 }
@@ -122,7 +120,7 @@ public class VerificarLoginController extends HttpServlet {
                         });
                 try {
                     clave = new ClienteDAO().getClaveBloqueo(id_client);
-                    System.out.println("clave in MailServlet" + clave);
+
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -135,7 +133,7 @@ public class VerificarLoginController extends HttpServlet {
                         message.setRecipients(Message.RecipientType.TO,
                                 InternetAddress.parse(email));
                         message.setSubject("Recuperar contraseña");
-                        message.setText("Tu clave es: " + clave + " O sigue este enlace para desboquear: http://localhost:8080/miDesbloquear?id=" + clave +"&email=" +email);
+                        message.setText("Tu clave es: " + clave + " O sigue este enlace para desboquear: http://localhost:8080/miDesbloquear?clave=" + clave +"&email=" +email);
                         Transport.send(message);
                     } catch (MessagingException e) {
                         e.printStackTrace();

@@ -1,6 +1,6 @@
 package cliente;
 
-import entity.LoginClienteHarnina;
+import entity.LoginEntity;
 import error.Error;
 import validate.ValidacionPassword;
 import validate.ValidacionUsuario;
@@ -9,16 +9,16 @@ import java.util.HashMap;
 
 public class ComandValidateLogin implements ComandValidate {
 
-    LoginClienteHarnina loginClienteHarnina = null;
+    LoginEntity loginEntity = null;
 
-   public ComandValidateLogin(LoginClienteHarnina loginClienteHarnina){
-      this.loginClienteHarnina = loginClienteHarnina;
+   public ComandValidateLogin(LoginEntity loginEntity){
+      this.loginEntity = loginEntity;
    }
     public HashMap<String,Error> getCommands(){
 
         HashMap<String,Error> errors = new HashMap<>();
-        errors.put("user",new ValidacionUsuario(loginClienteHarnina.getUsuarioCliente()).exec());
-        errors.put("password",new ValidacionPassword(loginClienteHarnina.getPasswordCliente()).exec());
+        errors.put("user",new ValidacionUsuario(loginEntity.getUsuarioCliente()).exec());
+        errors.put("password",new ValidacionPassword(loginEntity.getPasswordCliente()).exec());
         errors.entrySet().removeIf(entries->entries.getValue() == null);
 
         /*

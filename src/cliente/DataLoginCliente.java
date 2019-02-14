@@ -1,8 +1,6 @@
 package cliente;
 
-import entity.LoginClienteHarnina;
-import reflexion.RequestTransferSession;
-import reflexion.SessionTransferObject;
+import entity.LoginEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public  class DataLoginCliente {
 
-    LoginClienteHarnina loginClienteEntity = new LoginClienteHarnina();
+    LoginEntity loginClienteEntity = new LoginEntity();
     HttpSession session;
 
 
@@ -24,7 +22,7 @@ public  class DataLoginCliente {
        // new SessionTransferObject(session,loginClienteEntity);
     }
 
-    public LoginClienteHarnina getLoginClienteEntity() {
+    public LoginEntity getLoginClienteEntity() {
         return loginClienteEntity;
     }
 

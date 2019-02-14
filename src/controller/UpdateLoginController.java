@@ -1,7 +1,7 @@
 package controller;
 
 import dao.clienteDAO.ClienteDAO;
-import entity.LoginClienteHarnina;
+import entity.LoginEntity;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -38,8 +38,7 @@ public class UpdateLoginController extends HttpServlet {
         } catch (Exception e) {
             mensaje = e.getMessage();
         }
-        System.out.println("id:" + session.getAttribute("idCliente") + " user:" + user + " password:" + password);
-        LoginClienteHarnina loginClienteHarnina = new LoginClienteHarnina((Integer) session.getAttribute("idCliente"),user,password);
+        LoginEntity loginEntity = new LoginEntity((Integer) session.getAttribute("idCliente"),user,password);
         ClienteDAO clienteDAO = null;
         try {
              clienteDAO = new ClienteDAO();
@@ -51,17 +50,17 @@ public class UpdateLoginController extends HttpServlet {
         try {
             response.setCharacterEncoding("UTF-8");
 
-            // hay que ver si se puede
+            if(clienteDAO.can_Is_New_User(loginEntity)) {
 
-            if(clienteDAO.can_Is_New_User(loginClienteHarnina)) {
-
-                if (clienteDAO.update_login(loginClienteHarnina)) {
-                    System.out.println("update_login: true");
-                    response.getWriter().write(String.valueOf("OK"));
+                if (clienteDAO.update_login(loginEntity)) {
+                      response.getWriter().write(String.valueOf("OK"));
                 } else {
-                    System.out.println("update_login: false");
-                    response.getWriter().write(String.valueOf("INVALID"));
+                      response.getWriter().write(String.valueOf("INVALID"));
                 }
+            }
+            else{
+                System.out.println("Usuario Ocupado");
+                response.getWriter().write(String.valueOf("BUSY"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

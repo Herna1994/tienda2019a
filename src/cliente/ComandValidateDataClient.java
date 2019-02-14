@@ -1,7 +1,6 @@
 package cliente;
 
 import entity.ClientEntity;
-import entity.DaperClienteEntity;
 import error.Error;
 import validate.*;
 
