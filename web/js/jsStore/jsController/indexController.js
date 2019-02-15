@@ -26,6 +26,7 @@
         STORE.Error = STORE.managementError();
         STORE.Submit = STORE.managementSubmit();
         STORE.strategyOneByOne();
+        STORE.Prefijos();
 
         $("submit").addEventListener("click", function () {
             var envio = {

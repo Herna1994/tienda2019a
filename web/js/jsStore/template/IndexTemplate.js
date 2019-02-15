@@ -20,7 +20,7 @@ STORE.IndexTemplate = {
         "            </div>" +
         "            <div id='div_mobile'>" +
         "                <label for='mobile'></label>" +
-        "                <select id='prefijo'></select>" +
+        "                <select id='prefijoMovil'></select>" +
         "                <input class='etiqueta s8' id='mobile' name='movilCliente' value='' type='tel' data-functioncallback='ValidacionExpresionRegular.validarTelefonoFijo' size='20' required placeholder='Tlf Movil' title='Tlf Movil'>" + /*"ValidacionExpresionRegular.validarNumeroMovil"*/
         "            </div>" +
         "            <div id='div_email'>" +

@@ -465,7 +465,7 @@ STORE.namespace('STORE.ValidacionExpresionRegular');
 
             parametro.nodo = evt.target;
 
-            parametro.patron = STORE.prefix_input.regExp;
+            parametro.patron = STORE.prefix_input.regExpMovil;
 
             parametro.maximo = STORE.prefix_input.maximo;
 
@@ -494,12 +494,13 @@ STORE.namespace('STORE.ValidacionExpresionRegular');
 
             parametro.nodo = evt.target;
 
-            parametro.patron = "^(\\+34|0034|34)?[6789]\\d{8}$";
+            parametro.patron = STORE.prefix_input.regExpFijo;
 
-            parametro.mensajeError = "Teléfono Fijo NO válido";
+            parametro.maximo = STORE.prefix_input.maximo;
 
-            STORE.ValidacionUtil.valorarConsecuencia(STORE.ValidacionUtil.validarExpRegular(parametro), parametro);
+            parametro.mensajeError = ("ERROR: El número de teléfono fijo debe tener: " + parametro.maximo + " dígitos");
 
+            STORE.ValidacionUtil.valorarConsecuencia(STORE.ValidacionUtil.validarExpRegular(parametro),parametro);
         },
 
         validarUsuario: function (evt) {
